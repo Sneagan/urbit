@@ -879,23 +879,6 @@
   ?~  b  0
   (cat a i.b $(b t.b))
 ::
-++  rep                                                 ::  assemble single
-  ~/  %rep
-  |=  [a=bloq b=(list @)]
-  ^-  @
-  =+  c=0
-  |-
-  ?~  b  0
-  (add (lsh a c (end a 1 i.b)) $(c +(c), b t.b))
-::
-++  repn
-  ~/  %repn
-  |=  [bits=@ud x=(list @)]
-  =|  c=@ud
-  |-  ^-  @
-  ?~  x  0
-  (add (lsh 0 (mul bits c) (end 0 bits i.x)) $(c +(c), x t.x))
-::
 ++  new-rep                                             ::  assemble fixed
   ~/  %new-rep
   |=  [a=bloq b=@u c=(list @)]
@@ -917,22 +900,6 @@
   %^  lsh  boz
     (sub len (met boz dat))
   (swp boz dat)
-::
-::  Like `rip` but produces n-bit blocks instead of 2^n bit blocks.
-::
-++  ripn
-  ~/  %ripn
-  |=  [bits=@ud x=@]
-  ^-  (list @)
-  ?:  =(0 x)  ~
-  [(end 0 bits x) $(x (rsh 0 bits x))]
-::
-++  rip                                                 ::  disassemble
-  ~/  %rip
-  |=  [=bloq x=@]
-  ^-  (list @)
-  ?:  =(0 x)  ~
-  [(end bloq 1 x) $(x (rsh bloq 1 x))]
 ::
 ++  new-rip                                             ::  disassemble
   ~/  %new-rip
