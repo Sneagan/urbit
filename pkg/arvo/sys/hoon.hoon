@@ -912,6 +912,18 @@
   |=  [a=bloq b=@u c=@]
   (div c (bex (mul (bex a) b)))
 ::
+++  run                                                 ::  +turn into atom
+  ~/  %run
+  |=  [a=bloq b=@u c=@ d=$-(@ @)]
+  ^-  @
+  (rep a b (rut a b c d))
+::
+++  rut                                                 ::  +turn into list
+  ~/  %rut
+  |=  [a=bloq b=@u c=@ d=$-(@ @)]
+  ^-  (list @)
+  (turn (rip a b c) d)
+::
 ++  swp                                                 ::  naive rev bloq order
   ~/  %swp
   |=  [a=bloq b=@]
