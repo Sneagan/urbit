@@ -29,7 +29,7 @@
   |=  =tape
   ^-  tang
   %+  welp
-    %+  turn  (rip 10 (crip tape))
+    %+  turn  (new-rip 10 1 (crip tape))
     |=  line=cord
     leaf+(trip line)
   [leaf+""]~

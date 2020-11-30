@@ -22,7 +22,7 @@
   |=  =octs  ^-  (list byte)
   =/  atom-byte-width  (met 3 q.octs)
   =/  leading-zeros    (sub p.octs atom-byte-width)
-  (weld (reap leading-zeros 0) (rip 3 q.octs))
+  (weld (reap leading-zeros 0) (new-rip 3 1 q.octs))
 ::
 ++  explode-words
   ::  Explode a bytestring to words of bit-width `wid`. Result is in LSW order.
@@ -33,7 +33,7 @@
   =/  atom-word-width  (div-ceil atom-bit-width wid)
   =/  rslt-word-width  (div-ceil octs-bit-width wid)
   =/  pad              (sub rslt-word-width atom-word-width)
-  =/  x  (ripn wid q.octs)
+  =/  x  (new-rip 0 wid q.octs)
   %+  weld  x
   (reap pad 0)
 ::

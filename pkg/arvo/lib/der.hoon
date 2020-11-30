@@ -51,12 +51,12 @@
         ::  rendered in big-endian byte order. negative-signed would
         ::  be two's complement
         ::
-        [%int *]  =/  a  (flop (rip 3 int.pec))
+        [%int *]  =/  a  (flop (new-rip 3 1 int.pec))
                   ?~  a  [0 ~]
                   ?:((lte i.a 127) a [0 a])
         ::  padded to byte-width, must be already byte-aligned
         ::
-        [%bit *]  =/  a  (rip 3 bit.pec)
+        [%bit *]  =/  a  (new-rip 3 1 bit.pec)
                   =/  b  ~|  %der-invalid-bit
                       ?.  =(0 (mod len.pec 8))
                         ~|(%der-invalid-bit-alignment !!)
@@ -64,13 +64,13 @@
                   [0 (weld a (reap b 0))]
         ::  padded to byte-width
         ::
-        [%oct *]  =/  a  (rip 3 oct.pec)
+        [%oct *]  =/  a  (new-rip 3 1 oct.pec)
                   =/  b  ~|  %der-invalid-oct
                       (sub len.pec (lent a))
                   (weld a (reap b 0))
         ::
         [%nul *]  ~
-        [%obj *]  (rip 3 obj.pec)
+        [%obj *]  (new-rip 3 1 obj.pec)
         ::
         [%seq *]  %-  zing
                   |-  ^-  (list (list @))
@@ -96,7 +96,7 @@
       =/  b  (lent a)
       ?:  (lte b 127)
         [b ~]                :: note: big-endian
-      [(con 0x80 (met 3 b)) (flop (rip 3 b))]
+      [(con 0x80 (met 3 b)) (flop (new-rip 3 1 b))]
     --
   --
 ::  +de:der: decode atom to +spec:asn1
@@ -105,7 +105,7 @@
   |=  [len=@ud dat=@ux]
   ^-  (unit spec:asn1)
   :: XX refactor into +parse
-  =/  a  (rip 3 dat)
+  =/  a  (new-rip 3 1 dat)
   =/  b  ~|  %der-invalid-len
       (sub len (lent a))
   (rust `(list @D)`(weld a (reap b 0)) parse)

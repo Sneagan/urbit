@@ -1599,7 +1599,7 @@
   ++  reserved
     |=  a=@if
     ^-  ?
-    =/  b  (flop (rip 3 a))
+    =/  b  (flop (new-rip 3 1 a))
     ::  0.0.0.0/8 (software)
     ::
     ?.  ?=([@ @ @ @ ~] b)  &
@@ -2639,7 +2639,7 @@
         ::                                              ::  ++pode:ahem:aes:
         ++  pode                                        ::  explode to block
           |=  [a=bloq b=@ c=@]  ^-  (list @)
-          =+  d=(rip a c)
+          =+  d=(new-rip a 1 c)
           =+  m=(met a c)
           |-
           ?:  =(m b)
@@ -2830,7 +2830,7 @@
       ++  en                                            ::  encrypt
         ~/  %en
         |=  txt=@  ^-  @ux
-        =+  pts=?:(=(txt 0) `(list @)`~[0] (flop (rip 7 txt)))
+        =+  pts=?:(=(txt 0) `(list @)`~[0] (flop (new-rip 7 1 txt)))
         =|  cts=(list @)
         %+  rep  7
         ::  logically, flop twice here
@@ -2847,7 +2847,7 @@
       ++  de                                            ::  decrypt
         ~/  %de
         |=  txt=@  ^-  @ux
-        =+  cts=?:(=(txt 0) `(list @)`~[0] (flop (rip 7 txt)))
+        =+  cts=?:(=(txt 0) `(list @)`~[0] (flop (new-rip 7 1 txt)))
         =|  pts=(list @)
         %+  rep  7
         ::  logically, flop twice here
@@ -2869,7 +2869,7 @@
       ++  en                                            ::  encrypt
         ~/  %en
         |=  txt=@  ^-  @ux
-        =+  pts=?:(=(txt 0) `(list @)`~[0] (flop (rip 7 txt)))
+        =+  pts=?:(=(txt 0) `(list @)`~[0] (flop (new-rip 7 1 txt)))
         =|  cts=(list @)
         %+  rep  7
         ::  logically, flop twice here
@@ -2886,7 +2886,7 @@
       ++  de                                            ::  decrypt
         ~/  %de
         |=  txt=@  ^-  @ux
-        =+  cts=?:(=(txt 0) `(list @)`~[0] (flop (rip 7 txt)))
+        =+  cts=?:(=(txt 0) `(list @)`~[0] (flop (new-rip 7 1 txt)))
         =|  pts=(list @)
         %+  rep  7
         ::  logically, flop twice here
@@ -2908,7 +2908,7 @@
       ++  en                                            ::  encrypt
         ~/  %en
         |=  txt=@  ^-  @ux
-        =+  pts=?:(=(txt 0) `(list @)`~[0] (flop (rip 7 txt)))
+        =+  pts=?:(=(txt 0) `(list @)`~[0] (flop (new-rip 7 1 txt)))
         =|  cts=(list @)
         %+  rep  7
         ::  logically, flop twice here
@@ -2925,7 +2925,7 @@
       ++  de                                            ::  decrypt
         ~/  %de
         |=  txt=@  ^-  @ux
-        =+  cts=?:(=(txt 0) `(list @)`~[0] (flop (rip 7 txt)))
+        =+  cts=?:(=(txt 0) `(list @)`~[0] (flop (new-rip 7 1 txt)))
         =|  pts=(list @)
         %+  rep  7
         ::  logically, flop twice here
@@ -2943,7 +2943,7 @@
     ++  inc                                             ::  inc. low bloq
       |=  [mod=bloq ctr=@H]
       ^-  @uxH
-      =+  bqs=(rip mod ctr)
+      =+  bqs=(new-rip mod 1 ctr)
       ?~  bqs  0x1
       %+  rep  mod
       [(~(sum fe mod) i.bqs 1) t.bqs]
@@ -3562,7 +3562,7 @@
     ::                                                  ::  ++rpp:scr:crypto
     ++  rpp                                             ::  rip+filler blocks
       |=  [a=bloq b=@ c=@]
-      =+  q=(rip a c)
+      =+  q=(new-rip a 1 c)
       =+  w=(lent q)
       ?.  =(w b)
         ?.  (lth w b)  (slag (sub w b) q)
@@ -3999,7 +3999,7 @@
         ::  flip byte order in blocks of 8 bytes.
         |=  a=@
         %+  can  6
-        %+  turn  (rip 6 a)
+        %+  turn  (new-rip 6 1 a)
         |=  b=@
         :-  1
         (lsh 3 (sub 8 (met 3 b)) (swp 3 b))
@@ -4009,13 +4009,13 @@
         |=  a=@
         %+  can  6
         %+  turn
-          =+  (rip 6 a)
+          =+  (new-rip 6 1 a)
           (weld - (reap (sub 25 (lent -)) 0x0))
         |=  a=@
         :-  1
         %+  can  3
         =-  (turn - |=(a=@ [1 a]))
-        =+  (flop (rip 3 a))
+        =+  (flop (new-rip 3 1 a))
         (weld (reap (sub 8 (lent -)) 0x0) -)
       --
     ::
@@ -4543,7 +4543,7 @@
             |=  [h=@ w=@ud]
             ^-  (list @)
             %-  flop
-            =+  l=(rip 6 h)
+            =+  l=(new-rip 6 1 h)
             =-  (weld - l)
             (reap (sub w (lent l)) 0)
           ::
@@ -4899,7 +4899,7 @@
         ::  split the random-block into 64-bit sections,
         ::  then extract the first two 4-byte sections from each.
         ::
-        %+  turn  (flop (rip 6 random-block))
+        %+  turn  (flop (new-rip 6 1 random-block))
         |=  a=@
         ^-  (pair @ @)
         :-  (rev 3 4 (rsh 5 1 a))
@@ -5003,7 +5003,7 @@
         %-  permute
         =-  (weld (reap (sub 8 (lent -)) 0) -)
         %-  flop
-        %+  rip  7
+        %^  new-rip  7  1
         (cut 10 [(sub 7 i) 1] r)
       ::
       ::  iterate over columns of q to get z
@@ -5058,7 +5058,7 @@
         %+  turn  s
         |=  a=@
         ::  rev for endianness
-        =+  (rip 6 (rev 3 16 a))
+        =+  (new-rip 6 1 (rev 3 16 a))
         (weld - (reap (sub 2 (lent -)) 0))
       ::
       ::  do permutation rounds
@@ -5200,7 +5200,7 @@
       ::  endianness
       =.  dat
         %+  rep  5
-        %+  turn  (rip 5 dat)
+        %+  turn  (new-rip 5 1 dat)
         |=(a=@ (rev 3 4 a))
       =*  x  dat
       =+  blocks=(div wid 512)
@@ -7808,7 +7808,7 @@
       |=  txt=@t
       ?~  txt
         ^-  (list @t)  ~
-      =+  [byt=(rip 3 txt) len=(met 3 txt)]
+      =+  [byt=(new-rip 3 1 txt) len=(met 3 txt)]
       =|  [lin=(list @t) off=@]
       ^-  (list @t)
       %-  flop
@@ -8439,7 +8439,7 @@
     ++  decode
       |=  dat=@
       ^-  item
-      =/  bytes=(list @)  (flop (rip 3 dat))
+      =/  bytes=(list @)  (flop (new-rip 3 1 dat))
       =?  bytes  ?=(~ bytes)  ~[0]
       |^  item:decode-head
       ::
@@ -8667,7 +8667,7 @@
       ::  rex:  string of hex bytes with leading 0x.
       |*  [rex=@t tys=(list etyp)]
       =-  (decode-arguments - tys)
-      %+  turn  (rip 9 (rsh 3 2 rex))
+      %+  turn  (new-rip 9 1 (rsh 3 2 rex))
       (curr rash hex)
     ::
     ++  decode-arguments

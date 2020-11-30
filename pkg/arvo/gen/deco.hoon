@@ -147,7 +147,7 @@
       ::
       txt=term
   ^-  tape
-  "hello, {(rip 3 txt)}"
+  "hello, {(new-rip 3 1 txt)}"
 ::    ++say-goodbye: say a really proper goodbye
 ::
 ::  some paragraphs about the goodbye algorithm, possibly
@@ -171,9 +171,9 @@
   =/  foo  (add 2 2)
   =/  bar  (add (mul num foo) 2)
   =/  moo  (mul num bar)                                ::  for all the cows
-  "goodbye and {(scow %ud moo)}, {(rip 3 txt)}"
+  "goodbye and {(scow %ud moo)}, {(new-rip 3 1 txt)}"
 ::
 ++  say-minimum                                         ::  minimal decoration
   |=  txt=term
-  "nothing to say to {(rip 3 txt)}"
+  "nothing to say to {(new-rip 3 1 txt)}"
 --
