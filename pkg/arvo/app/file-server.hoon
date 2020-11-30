@@ -245,7 +245,7 @@
       %+  turn  upper
       |=  word=@t
       %-  crip
-      %+  turn  (new-rip 3 1 word)
+      %+  turn  (rip 3 1 word)
       |=  char=@t
       ?.  &((gte char 'A') (lte char 'Z'))
         char

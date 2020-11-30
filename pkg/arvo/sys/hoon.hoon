@@ -879,8 +879,8 @@
   ?~  b  0
   (cat a i.b $(b t.b))
 ::
-++  new-rep                                             ::  assemble fixed
-  ~/  %new-rep
+++  rep                                                 ::  assemble fixed
+  ~/  %rep
   |=  [a=bloq b=@u c=(list @)]
   =|  i=@ud
   |-  ^-  @
@@ -901,8 +901,8 @@
     (sub len (met boz dat))
   (swp boz dat)
 ::
-++  new-rip                                             ::  disassemble
-  ~/  %new-rip
+++  rip                                                 ::  disassemble
+  ~/  %rip
   |=  [a=bloq b=@u c=@]
   ^-  (list @)
   ?:  =(0 c)  ~
@@ -916,7 +916,7 @@
 ++  swp                                                 ::  naive rev bloq order
   ~/  %swp
   |=  [a=bloq b=@]
-  (new-rep a 1 (flop (new-rip a 1 b)))
+  (rep a 1 (flop (rip a 1 b)))
 ::
 ++  xeb                                                 ::  binary logarithm
   ~/  %xeb
@@ -1015,11 +1015,11 @@
   |=  [syd=@ len=@ key=@]
   =.  syd      (end 5 1 syd)
   =/  pad      (sub len (met 3 key))
-  =/  data     (weld (new-rip 3 1 key) (reap pad 0))
+  =/  data     (weld (rip 3 1 key) (reap pad 0))
   =/  nblocks  (div len 4)  ::  intentionally off-by-one
   =/  h1  syd
   =+  [c1=0xcc9e.2d51 c2=0x1b87.3593]
-  =/  blocks  (new-rip 5 1 key)
+  =/  blocks  (rip 5 1 key)
   =/  i  nblocks
   =.  h1  =/  hi  h1  |-
     ?:  =(0 i)  hi
@@ -3303,10 +3303,10 @@
   =+  i=0
   |-  ^-  @
   ?:  =(i lex)
-    (new-rep 5 1 (turn (new-rip 5 1 hax) net))
+    (rep 5 1 (turn (rip 5 1 hax) net))
   =+  ^=  wox
       =+  dux=(cut 9 [i 1] ful)
-      =+  wox=(new-rep 5 1 (turn (new-rip 5 1 dux) net))
+      =+  wox=(rep 5 1 (turn (rip 5 1 dux) net))
       =+  j=16
       |-  ^-  @
       ?:  =(64 j)
@@ -3334,7 +3334,7 @@
   ?:  =(64 j)
     %=  ^$
       i  +(i)
-      hax  %^  new-rep  5  1
+      hax  %^  rep  5  1
            :~  (sum a (wac 0 hax))
                (sum b (wac 1 hax))
                (sum c (wac 2 hax))
@@ -3423,10 +3423,10 @@
   =+  i=0
   |-  ^-  @
   ?:  =(i lex)
-    (new-rep 6 1 (turn (new-rip 6 1 hax) net))
+    (rep 6 1 (turn (rip 6 1 hax) net))
   =+  ^=  wox
       =+  dux=(cut 10 [i 1] ful)
-      =+  wox=(new-rep 6 1 (turn (new-rip 6 1 dux) net))
+      =+  wox=(rep 6 1 (turn (rip 6 1 dux) net))
       =+  j=16
       |-  ^-  @
       ?:  =(80 j)
@@ -3454,7 +3454,7 @@
   ?:  =(80 j)
     %=  ^$
       i  +(i)
-      hax  %^  new-rep  6  1
+      hax  %^  rep  6  1
            :~  (sum a (wac 0 hax))
                (sum b (wac 1 hax))
                (sum c (wac 2 hax))
@@ -3491,10 +3491,10 @@
   =+  i=0
   |-
   ?:  =(i lex)
-    (new-rep 5 1 (flop (new-rip 5 1 hax)))
+    (rep 5 1 (flop (rip 5 1 hax)))
   =+  ^=  wox
       =+  dux=(cut 9 [i 1] ful)
-      =+  wox=(new-rep 5 1 (turn (new-rip 5 1 dux) net))
+      =+  wox=(rep 5 1 (turn (rip 5 1 dux) net))
       =+  j=16
       |-  ^-  @
       ?:  =(80 j)
@@ -3517,7 +3517,7 @@
   ?:  =(80 j)
     %=  ^$
       i  +(i)
-      hax  %^  new-rep  5  1
+      hax  %^  rep  5  1
            :~
                (sum a (wac 0 hax))
                (sum b (wac 1 hax))
@@ -3615,10 +3615,10 @@
     =+  i=0
     |-
     ?:  =(i lex)
-      (new-rep 5 1 (flop (new-rip 5 1 hax)))
+      (rep 5 1 (flop (rip 5 1 hax)))
     =+  ^=  wox
         =+  dux=(cut 9 [i 1] ful)
-        =+  wox=(new-rep 5 1 (turn (new-rip 5 1 dux) net))
+        =+  wox=(rep 5 1 (turn (rip 5 1 dux) net))
         =+  j=16
         |-  ^-  @
         ?:  =(80 j)
@@ -3641,7 +3641,7 @@
     ?:  =(80 j)
       %=  ^$
         i  +(i)
-        hax  %^  new-rep  5  1
+        hax  %^  rep  5  1
              :~
                  (sum a (wac 0 hax))
                  (sum b (wac 1 hax))
@@ -4096,7 +4096,7 @@
 ++  fa                                                  ::  base58check
   =+  key='123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
   =/  yek=@ux  ~+
-      =-  yek:(roll (new-rip 3 1 key) -)
+      =-  yek:(roll (rip 3 1 key) -)
       =+  [a=*char b=*@ yek=`@ux`(fil 3 256 0xff)]
       |.
       [+(b) (mix yek (lsh 3 `@u`a (~(inv fe 3) b)))]
@@ -4325,13 +4325,13 @@
 ++  tuba                                                ::  utf8 to utf32 tape
   |=  a=tape
   ^-  (list @c)
-  (new-rip 5 1 (taft (rap 3 a)))                        ::  XX horrible
+  (rip 5 1 (taft (rap 3 a)))                            ::  XX horrible
 ::
 ++  tufa                                                ::  utf32 to utf8 tape
   |=  a=(list @c)
   ^-  tape
   ?~  a  ""
-  (weld (new-rip 3 1 (tuft i.a)) $(a t.a))
+  (weld (rip 3 1 (tuft i.a)) $(a t.a))
 ::
 ++  tuft                                                ::  utf32 to utf8 text
   |=  a=@c
@@ -4365,7 +4365,7 @@
 ++  wack                                                ::  knot escape
   |=  a=@ta
   ^-  @ta
-  =+  b=(new-rip 3 1 a)
+  =+  b=(rip 3 1 a)
   %+  rap  3
   |-  ^-  tape
   ?~  b
@@ -4377,7 +4377,7 @@
 ++  wick                                                ::  knot unescape
   |=  a=@
   ^-  (unit @ta)
-  =+  b=(new-rip 3 1 a)
+  =+  b=(rip 3 1 a)
   =-  ?^(b ~ (some (rap 3 (flop c))))
   =|  c=tape
   |-  ^-  [b=tape c=tape]
@@ -4405,7 +4405,7 @@
   ?.  =('~' b)
     [b $(a c)]
   =>  .(b (end 3 1 c), c (rsh 3 1 c))
-  ?+  b  =-  (weld (new-rip 3 1 (tuft p.d)) $(a q.d))
+  ?+  b  =-  (weld (rip 3 1 (tuft p.d)) $(a q.d))
          ^=  d
          =+  d=0
          |-  ^-  [p=@ q=@]
@@ -5378,7 +5378,7 @@
              haf:ab                                     ::  star
              tiq:ab                                     ::  galaxy
            ==
-  ++  feq  %+  cook  |=(a=(list @) (new-rep 4 1 (flop a)))
+  ++  feq  %+  cook  |=(a=(list @) (rep 4 1 (flop a)))
            ;~  plug
              ;~(pose hif:ab tiq:ab)
              (star ;~(pfix dof hif:ab))
@@ -5433,7 +5433,7 @@
         =+  [yed=(end 3 1 p.p.lot) hay=(cut 3 [1 1] p.p.lot)]
         |-  ^-  tape
         ?+    yed  (z-co q.p.lot)
-            %c   ['~' '-' (weld (new-rip 3 1 (wood (tuft q.p.lot))) rep)]
+            %c   ['~' '-' (weld (rip 3 1 (wood (tuft q.p.lot))) rep)]
             %d
           ?+    hay  (z-co q.p.lot)
               %a
@@ -5502,7 +5502,7 @@
             (weld q.res rep)
           %+  roll
             =*  val  q.p.lot
-            ?:(=(0 val) ~[0] (new-rip 3 1 val))
+            ?:(=(0 val) ~[0] (rip 3 1 val))
           |=  [q=@ s=? r=tape]
           :-  !s
           %+  weld
@@ -5540,9 +5540,9 @@
             %t
           ?:  =('a' hay)
             ?:  =('s' (cut 3 [2 1] p.p.lot))
-              (weld (new-rip 3 1 q.p.lot) rep)
-            ['~' '.' (weld (new-rip 3 1 q.p.lot) rep)]
-          ['~' '~' (weld (new-rip 3 1 (wood q.p.lot)) rep)]
+              (weld (rip 3 1 q.p.lot) rep)
+            ['~' '.' (weld (rip 3 1 q.p.lot) rep)]
+          ['~' '~' (weld (rip 3 1 (wood q.p.lot)) rep)]
         ==
       --
   =|  rep=tape
@@ -6148,7 +6148,7 @@
     ^-  tank
     ?+    tag
     ::
-      leaf+"mook.{(new-rip 3 1 tag)}"
+      leaf+"mook.{(rip 3 1 tag)}"
     ::
         %hunk
       ?@  dat  leaf+"mook.hunk"
@@ -6158,13 +6158,13 @@
     ::
         %lose
       ?^  dat  leaf+"mook.lose"
-      leaf+(new-rip 3 1 dat)
+      leaf+(rip 3 1 dat)
     ::
         %hand
       leaf+(scow %p (mug dat))
     ::
         %mean
-      ?@  dat  leaf+(new-rip 3 1 dat)
+      ?@  dat  leaf+(rip 3 1 dat)
       =/  mac  (mack dat -.dat)
       ?~  mac  leaf+"####"
       =/  sof  ((soft tank) u.mac)
@@ -11065,7 +11065,7 @@
           [[' ' ~] ['<' ~] ['>' ~]]
         |-  ^-  (list tank)
         ?~  p.q.ham  [cox ~]
-        [[%leaf (new-rip 3 1 i.p.q.ham)] $(p.q.ham t.p.q.ham)]
+        [[%leaf (rip 3 1 i.p.q.ham)] $(p.q.ham t.p.q.ham)]
       ::
           [%face *]
         =^  cox  gid  $(q.ham q.q.ham)
@@ -11134,7 +11134,7 @@
       ?~  lum  ~
       ?@  lum  !!
       ?>  ?=(@ -.lum)
-      [[%leaf (new-rip 3 1 -.lum)] $(lum +.lum)]
+      [[%leaf (rip 3 1 -.lum)] $(lum +.lum)]
     ::
         %type
       =+  tyr=|.((dial dole))
@@ -11176,8 +11176,8 @@
       ?+    (rash p.q.ham ;~(sfix (cook crip (star low)) (star hig)))
           ~(rend co [%$ p.q.ham lum])
         %$    ~(rend co [%$ %ud lum])
-        %t    (dash (new-rip 3 1 lum) '\'' ~)
-        %tas  ['%' ?.(=(0 lum) (new-rip 3 1 lum) ['$' ~])]
+        %t    (dash (rip 3 1 lum) '\'' ~)
+        %tas  ['%' ?.(=(0 lum) (rip 3 1 lum) ['$' ~])]
       ==
     ::
         [%core *]
@@ -11191,7 +11191,7 @@
       ::    =+  den=^$(q.ham q.q.ham)
       ::    ?~(den ~ [~ u.den ~])
       ::  =+  mur=$(p.q.ham t.p.q.ham, lum +.lum)
-      ::  ?~(mur ~ [~ [[%leaf (new-rip 3 1 i.p.q.ham)] u.mur]])
+      ::  ?~(mur ~ [~ [[%leaf (rip 3 1 i.p.q.ham)] u.mur]])
       [~ (dial ham)]
     ::
         [%face *]

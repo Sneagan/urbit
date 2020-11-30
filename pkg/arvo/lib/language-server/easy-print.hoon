@@ -103,7 +103,7 @@
           [[' ' ~] ['<' ~] ['>' ~]]
         |-  ^-  (list tank)
         ?~  p.q.ham  ~
-        [[%leaf (new-rip 3 1 i.p.q.ham)] $(p.q.ham t.p.q.ham)]
+        [[%leaf (rip 3 1 i.p.q.ham)] $(p.q.ham t.p.q.ham)]
       :+  %rose
         [" -> " "" ""]
       :+  u.sam
@@ -111,7 +111,7 @@
           [[' ' ~] ['<' ~] ['>' ~]]
         |-  ^-  (list tank)
         ?~  p.q.ham  ~
-        [[%leaf (new-rip 3 1 i.p.q.ham)] $(p.q.ham t.p.q.ham)]
+        [[%leaf (rip 3 1 i.p.q.ham)] $(p.q.ham t.p.q.ham)]
       ~
     ::
         [%face *]
@@ -181,7 +181,7 @@
     ?~  lum  ~
     ?@  lum  !!
     ?>  ?=(@ -.lum)
-    [[%leaf (new-rip 3 1 -.lum)] $(lum +.lum)]
+    [[%leaf (rip 3 1 -.lum)] $(lum +.lum)]
   ::
       %type
     =+  tyr=|.((dial dole))
@@ -223,8 +223,8 @@
     ?+    (rash p.q.ham ;~(sfix (cook crip (star low)) (star hig)))
         ~(rend co [%$ p.q.ham lum])
       %$    ~(rend co [%$ %ud lum])
-      %t    (dash (new-rip 3 1 lum) '\'' ~)
-      %tas  ['%' ?.(=(0 lum) (new-rip 3 1 lum) ['$' ~])]
+      %t    (dash (rip 3 1 lum) '\'' ~)
+      %tas  ['%' ?.(=(0 lum) (rip 3 1 lum) ['$' ~])]
     ==
   ::
       [%gate *]
@@ -241,7 +241,7 @@
     ::    =+  den=^$(q.ham q.q.ham)
     ::    ?~(den ~ [~ u.den ~])
     ::  =+  mur=$(p.q.ham t.p.q.ham, lum +.lum)
-    ::  ?~(mur ~ [~ [[%leaf (new-rip 3 1 i.p.q.ham)] u.mur]])
+    ::  ?~(mur ~ [~ [[%leaf (rip 3 1 i.p.q.ham)] u.mur]])
     [~ (dial ham)]
   ::
       [%face *]
