@@ -896,6 +896,14 @@
   ?~  x  0
   (add (lsh 0 (mul bits c) (end 0 bits i.x)) $(c +(c), x t.x))
 ::
+++  new-rep                                             ::  assemble fixed
+  ~/  %new-rep
+  |=  [a=bloq b=@u c=(list @)]
+  =|  i=@ud
+  |-  ^-  @
+  ?~  c   0
+  (add (lsh a (mul b i) (end a b i.c)) $(i +(i), c t.c))
+::
 ++  rev
   ::  reverses block order, accounting for leading zeroes
   ::
@@ -925,6 +933,13 @@
   ^-  (list @)
   ?:  =(0 x)  ~
   [(end bloq 1 x) $(x (rsh bloq 1 x))]
+::
+++  new-rip                                             ::  disassemble
+  ~/  %new-rip
+  |=  [a=bloq b=@u c=@]
+  ^-  (list @)
+  ?:  =(0 c)  ~
+  [(end a b c) $(c (rsh a b c))]
 ::
 ++  rsh                                                 ::  right-shift
   ~/  %rsh
