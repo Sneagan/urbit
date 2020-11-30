@@ -128,6 +128,6 @@
     =/  len  (sub (mul 3 (div (add lat dif) 4)) dif)
     :+  ~  len
     %+  swp  3
-    (repn 6 (flop (weld dat (reap dif 0))))
+    (new-rep 0 6 (flop (weld dat (reap dif 0))))
   --
 --

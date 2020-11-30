@@ -3336,10 +3336,10 @@
   =+  i=0
   |-  ^-  @
   ?:  =(i lex)
-    (rep 5 (turn (new-rip 5 1 hax) net))
+    (new-rep 5 1 (turn (new-rip 5 1 hax) net))
   =+  ^=  wox
       =+  dux=(cut 9 [i 1] ful)
-      =+  wox=(rep 5 (turn (new-rip 5 1 dux) net))
+      =+  wox=(new-rep 5 1 (turn (new-rip 5 1 dux) net))
       =+  j=16
       |-  ^-  @
       ?:  =(64 j)
@@ -3367,7 +3367,7 @@
   ?:  =(64 j)
     %=  ^$
       i  +(i)
-      hax  %+  rep  5
+      hax  %^  new-rep  5  1
            :~  (sum a (wac 0 hax))
                (sum b (wac 1 hax))
                (sum c (wac 2 hax))
@@ -3456,10 +3456,10 @@
   =+  i=0
   |-  ^-  @
   ?:  =(i lex)
-    (rep 6 (turn (new-rip 6 1 hax) net))
+    (new-rep 6 1 (turn (new-rip 6 1 hax) net))
   =+  ^=  wox
       =+  dux=(cut 10 [i 1] ful)
-      =+  wox=(rep 6 (turn (new-rip 6 1 dux) net))
+      =+  wox=(new-rep 6 1 (turn (new-rip 6 1 dux) net))
       =+  j=16
       |-  ^-  @
       ?:  =(80 j)
@@ -3487,7 +3487,7 @@
   ?:  =(80 j)
     %=  ^$
       i  +(i)
-      hax  %+  rep  6
+      hax  %^  new-rep  6  1
            :~  (sum a (wac 0 hax))
                (sum b (wac 1 hax))
                (sum c (wac 2 hax))
@@ -3524,10 +3524,10 @@
   =+  i=0
   |-
   ?:  =(i lex)
-    (rep 5 (flop (new-rip 5 1 hax)))
+    (new-rep 5 1 (flop (new-rip 5 1 hax)))
   =+  ^=  wox
       =+  dux=(cut 9 [i 1] ful)
-      =+  wox=(rep 5 (turn (new-rip 5 1 dux) net))
+      =+  wox=(new-rep 5 1 (turn (new-rip 5 1 dux) net))
       =+  j=16
       |-  ^-  @
       ?:  =(80 j)
@@ -3550,7 +3550,7 @@
   ?:  =(80 j)
     %=  ^$
       i  +(i)
-      hax  %+  rep  5
+      hax  %^  new-rep  5  1
            :~
                (sum a (wac 0 hax))
                (sum b (wac 1 hax))
@@ -3648,10 +3648,10 @@
     =+  i=0
     |-
     ?:  =(i lex)
-      (rep 5 (flop (new-rip 5 1 hax)))
+      (new-rep 5 1 (flop (new-rip 5 1 hax)))
     =+  ^=  wox
         =+  dux=(cut 9 [i 1] ful)
-        =+  wox=(rep 5 (turn (new-rip 5 1 dux) net))
+        =+  wox=(new-rep 5 1 (turn (new-rip 5 1 dux) net))
         =+  j=16
         |-  ^-  @
         ?:  =(80 j)
@@ -3674,7 +3674,7 @@
     ?:  =(80 j)
       %=  ^$
         i  +(i)
-        hax  %+  rep  5
+        hax  %^  new-rep  5  1
              :~
                  (sum a (wac 0 hax))
                  (sum b (wac 1 hax))
@@ -5411,7 +5411,7 @@
              haf:ab                                     ::  star
              tiq:ab                                     ::  galaxy
            ==
-  ++  feq  %+  cook  |=(a=(list @) (rep 4 (flop a)))
+  ++  feq  %+  cook  |=(a=(list @) (new-rep 4 1 (flop a)))
            ;~  plug
              ;~(pose hif:ab tiq:ab)
              (star ;~(pfix dof hif:ab))

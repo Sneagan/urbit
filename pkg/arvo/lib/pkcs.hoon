@@ -28,7 +28,7 @@
       ~|(%emsa-too-short !!)
     =/  ps=(list @D)
       (reap (sub emlen (add 3 tlen)) 0xff)
-    (rep 3 (flop (weld [0x0 0x1 ps] [0x0 t])))
+    (new-rep 3 1 (flop (weld [0x0 0x1 ps] [0x0 t])))
   ::  +sign:rs256: sign message
   ::
   ::    An RSA signature is the primitive decryption of the message hash.

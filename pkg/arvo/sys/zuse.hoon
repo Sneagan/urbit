@@ -2626,7 +2626,7 @@
           =>  .(r.c (cut 3 [2 1] i.a))
           =>  .(s.c (cut 3 [3 1] i.a))
           :_  $(a t.a)
-          %+  rep  3
+          %^  new-rep  3  1
           %+  turn
             %-  limo
             :~  [[p.c p.b] [q.c q.b] [r.c r.b] [s.c s.b]]
@@ -2648,7 +2648,7 @@
         ::                                              ::  ++sube:ahem:aes:
         ++  sube                                        ::  s-box word
           |=  [a=@ b=@]  ^-  @
-          (rep 3 (turn (pode 3 4 a) |=(c=@ (cut 3 [c 1] b))))
+          (new-rep 3 1 (turn (pode 3 4 a) |=(c=@ (cut 3 [c 1] b))))
         --  ::
       |%
       ::                                                ::  ++be:ahem:aes:crypto
@@ -2678,7 +2678,7 @@
                 ?:  =(c nnb)
                   d
                 :_  $(c +(c))
-                %+  rep  3
+                %^  new-rep  3  1
                 %+  turn
                   (limo [0 p.e] [1 q.e] [2 r.e] [3 s.e] ~)
                 |=  [f=@ g=@]
@@ -2702,7 +2702,7 @@
         =>  .(e (subs d e))
         =>  .(e (srow d e))
         =>  .(e (sark e (ankh d nnr b)))
-        (rep 5 e)
+        (new-rep 5 1 e)
       ::                                                ::  ++ex:ahem:aes:crypto
       ++  ex                                            ::  key expand
         |=  a=@I  ^-  @
@@ -2729,7 +2729,7 @@
         ?:  =(nnr i)
           a
         =>  .(b (cut 7 [i 1] a))
-        =>  .(b (rep 5 (mcol (pode 5 4 b) c)))
+        =>  .(b (new-rep 5 1 (mcol (pode 5 4 b) c)))
         =>  .(j (sub nnr i))
         %=    $
             i  +(i)
@@ -2832,7 +2832,7 @@
         |=  txt=@  ^-  @ux
         =+  pts=?:(=(txt 0) `(list @)`~[0] (flop (new-rip 7 1 txt)))
         =|  cts=(list @)
-        %+  rep  7
+        %^  new-rep  7  1
         ::  logically, flop twice here
         |-  ^-  (list @)
         ?~  pts
@@ -2849,7 +2849,7 @@
         |=  txt=@  ^-  @ux
         =+  cts=?:(=(txt 0) `(list @)`~[0] (flop (new-rip 7 1 txt)))
         =|  pts=(list @)
-        %+  rep  7
+        %^  new-rep  7  1
         ::  logically, flop twice here
         |-  ^-  (list @)
         ?~  cts
@@ -2871,7 +2871,7 @@
         |=  txt=@  ^-  @ux
         =+  pts=?:(=(txt 0) `(list @)`~[0] (flop (new-rip 7 1 txt)))
         =|  cts=(list @)
-        %+  rep  7
+        %^  new-rep  7  1
         ::  logically, flop twice here
         |-  ^-  (list @)
         ?~  pts
@@ -2888,7 +2888,7 @@
         |=  txt=@  ^-  @ux
         =+  cts=?:(=(txt 0) `(list @)`~[0] (flop (new-rip 7 1 txt)))
         =|  pts=(list @)
-        %+  rep  7
+        %^  new-rep  7  1
         ::  logically, flop twice here
         |-  ^-  (list @)
         ?~  cts
@@ -2910,7 +2910,7 @@
         |=  txt=@  ^-  @ux
         =+  pts=?:(=(txt 0) `(list @)`~[0] (flop (new-rip 7 1 txt)))
         =|  cts=(list @)
-        %+  rep  7
+        %^  new-rep  7  1
         ::  logically, flop twice here
         |-  ^-  (list @)
         ?~  pts
@@ -2927,7 +2927,7 @@
         |=  txt=@  ^-  @ux
         =+  cts=?:(=(txt 0) `(list @)`~[0] (flop (new-rip 7 1 txt)))
         =|  pts=(list @)
-        %+  rep  7
+        %^  new-rep  7  1
         ::  logically, flop twice here
         |-  ^-  (list @)
         ?~  cts
@@ -2945,7 +2945,7 @@
       ^-  @uxH
       =+  bqs=(new-rip mod 1 ctr)
       ?~  bqs  0x1
-      %+  rep  mod
+      %^  new-rep  mod  1
       [(~(sum fe mod) i.bqs 1) t.bqs]
     ::                                                  ::  ++ctra:aes:crypto
     ++  ctra                                            ::  AES-128 CTR
@@ -2961,7 +2961,7 @@
         ?>  (gte len (met 3 txt))
         %+  mix  txt
         %^  rsh  3  (sub (mul 16 blocks) len)
-        %+  rep  7
+        %^  new-rep  7  1
         =|  seed=(list @ux)
         |-  ^+  seed
         ?:  =(blocks 0)  seed
@@ -2988,7 +2988,7 @@
         ?>  (gte len (met 3 txt))
         %+  mix  txt
         %^  rsh  3  (sub (mul 16 blocks) len)
-        %+  rep  7
+        %^  new-rep  7  1
         =|  seed=(list @ux)
         |-  ^+  seed
         ?:  =(blocks 0)  seed
@@ -3015,7 +3015,7 @@
         ?>  (gte len (met 3 txt))
         %+  mix  txt
         %^  rsh  3  (sub (mul 16 blocks) len)
-        %+  rep  7
+        %^  new-rep  7  1
         =|  seed=(list @ux)
         |-  ^+  seed
         ?:  =(blocks 0)  seed
@@ -3558,7 +3558,7 @@
       =+  ^=  ow  |-  ^-  (list @)
                   ?~  r  xw
                   $(xw (dr xw), r (sub r 2))
-      (rep 5 (al xw ow))
+      (new-rep 5 1 (al xw ow))
     ::                                                  ::  ++rpp:scr:crypto
     ++  rpp                                             ::  rip+filler blocks
       |=  [a=bloq b=@ c=@]
@@ -3655,7 +3655,7 @@
       =+  [t=0 j=1 k=1]
       =.  t  |-  ^-  @
         ?:  (gth j l)  t
-        =+  u=(add s (lsh 3 sl (rep 3 (flop (rpp 3 4 j)))))
+        =+  u=(add s (lsh 3 sl (new-rep 3 1 (flop (rpp 3 4 j)))))
         =+  f=0  =.  f  |-  ^-  @
           ?:  (gth k c)  f
           =+  q=(hml p pl u ?:(=(k 1) (add sl 4) h))
@@ -3687,14 +3687,14 @@
           ==
       =+  ^=  b  =+  (rpp 3 u (pbl p pl s sl 1 u))
         %+  turn  (bls (mul 128 r) -)
-        |=(a=(list @) (rpp 9 (mul 2 r) (rep 3 a)))
+        |=(a=(list @) (rpp 9 (mul 2 r) (new-rep 3 1 a)))
       ?>  =((lent b) z)
       =+  ^=  q
         =+  |-  ?~  b  (flop v)
             $(b +.b, v [i=(srm r -.b n) t=v])
         %+  turn  `(list (list @))`-
-        |=(a=(list @) (rpp 3 (mul 128 r) (rep 9 a)))
-      (pbl p pl (rep 3 (slb q)) u 1 d)
+        |=(a=(list @) (rpp 3 (mul 128 r) (new-rep 9 1 a)))
+      (pbl p pl (new-rep 3 1 (slb q)) u 1 d)
     ::                                                  ::  ++ypt:scr:crypto
     ++  ypt                                             ::  256bit {salt pass}
       |=  [s=@ p=@]
@@ -4556,7 +4556,7 @@
           ++  put-word
             |=  [h=@ i=@ud w=@ud d=@]
             ^-  @
-            %+  rep  6
+            %^  new-rep  6  1
             =+  l=(get-word-list h w)
             %-  flop
             %+  weld  (scag i l)
@@ -4683,7 +4683,7 @@
       ::  produce output of desired length
       %^  rsh  3  (sub 64 out)
       ::  do some word
-      %+  rep  6
+      %^  new-rep  6  1
       %+  turn  (flop (gulf 0 7))
       |=  a=@
       (rev 3 8 (get-word h a 8))
@@ -4885,7 +4885,7 @@
           %+  compress  0
           %+  compress  0
           %^  lsh  3  968
-          %+  rep  6
+          %^  new-rep  6  1
           =+  (cury (cury rev 3) 8)
           :~  (- counter)
               (- (type-to-num typ))
@@ -5015,7 +5015,7 @@
       ::  when done, assemble z and xor it with r
       ::
       ?.  (lth i 8)
-        (mix (rep 7 (flop z)) r)
+        (mix (new-rep 7 1 (flop z)) r)
       ::
       ::  permute the column
       ::
@@ -5199,7 +5199,7 @@
       =+  (md5-pad wid dat)
       ::  endianness
       =.  dat
-        %+  rep  5
+        %^  new-rep  5  1
         %+  turn  (new-rip 5 1 dat)
         |=(a=@ (rev 3 4 a))
       =*  x  dat
@@ -5217,7 +5217,7 @@
       =+  *[aa=@ bb=@ cc=@ dd=@ ee=@]  ::  a'..e'
       |^
         ?:  =(i blocks)
-          %+  rep  5
+          %^  new-rep  5  1
           %+  turn  `(list @)`~[h4 h3 h2 h1 h0]
           ::  endianness
           |=(h=@ (rev 3 4 h))
@@ -5404,7 +5404,7 @@
         =/  u
           %+  add  dat.s
           %^  lsh  3  wid.s
-          %+  rep  3
+          %^  new-rep  3  1
           (flop (rpp:scr 3 4 j))
         =+  f=0
         =.  f
@@ -6191,7 +6191,7 @@
       ++  rule
         %+  cook
           |=  a=(list @)  ^-  octs
-          [(add (dvr (lent a) 2)) (repn 4 (flop a))]
+          [(add (dvr (lent a) 2)) (new-rep 0 4 (flop a))]
         (star hit)
       --
     ::                                                  ::  ++en-base64:mimes:
@@ -7817,9 +7817,9 @@
         ~|  %noeol  !!
       ?:  =((snag off byt) 10)
         ?:  =(+(off) len)
-          [(rep 3 (scag off byt)) lin]
+          [(new-rep 3 1 (scag off byt)) lin]
         %=  $
-          lin  [(rep 3 (scag off byt)) lin]
+          lin  [(new-rep 3 1 (scag off byt)) lin]
           byt  (slag +(off) byt)
           len  (sub len +(off))
           off  0
@@ -8504,7 +8504,7 @@
       ++  get-value
         |=  [at=@ud to=@ud]
         ^-  @
-        (rep 3 (flop (swag [at to] bytes)))
+        (new-rep 3 1 (flop (swag [at to] bytes)))
       --
     --
   ::
@@ -8740,7 +8740,7 @@
         %^  rsh  3
           =+  (mod bys 32)
           ?:(=(0 -) - (sub 32 -))
-        %+  rep  8
+        %^  new-rep  8  1
         %-  flop
         =-  (swag [fro -] wos)
         +((div (dec bys) 32))

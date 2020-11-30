@@ -12,7 +12,7 @@
   =<  |=  a=spec:asn1
       ^-  [len=@ud dat=@ux]
       =/  b  ~(ren raw a)
-      [(lent b) (rep 3 b)]
+      [(lent b) (new-rep 3 1 b)]
   |%
   ::  +raw:en:der: door for encoding +spec:asn1 to list of bytes
   ::
@@ -191,7 +191,7 @@
       =/  faz  (end 0 7 fuz)
       ?:  =(0 (cut 0 [7 1] fuz))
         [0 faz]
-      [faz (rep 3 (flop (scag faz t.q.tub)))]
+      [faz (new-rep 3 1 (flop (scag faz t.q.tub)))]
     ?:  ?&  !=(0 nex)
             !=(nex (met 3 len))
         ==
