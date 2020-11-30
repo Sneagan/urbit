@@ -9,7 +9,7 @@ u3qc_swp(u3_atom a,
 {
   //XX write a proper c-style swp, maybe
   //
-  return u3kc_new_rep(u3k(a), 1, u3kb_flop(u3qc_new_rip(a, 1, b)));
+  return u3kc_rep(u3k(a), 1, u3kb_flop(u3qc_rip(a, 1, b)));
 }
 
 u3_noun

@@ -6,7 +6,7 @@
 u3_noun
 u3qe_trip(u3_atom a)
 {
-  return u3qc_new_rip(3, 1, a);
+  return u3qc_rip(3, 1, a);
 }
 
 u3_noun
