@@ -92,3 +92,47 @@
     u3z(a); u3z(b);
     return res;
   }
+
+u3_noun
+u3qc_new_rep(u3_atom a,
+             u3_atom b,
+             u3_noun c)
+{
+  if ( 1 == b ) {
+    return u3qc_rep(a, c);
+  }
+
+  if ( 0 == a ) {
+    return u3qc_repn(b, c);
+  }
+
+  u3l_log("rep: stub\r\r");
+  return u3m_bail(c3__fail);
+}
+
+u3_noun
+u3wc_new_rep(u3_noun cor)
+{
+  u3_noun a, b, c;
+  u3x_mean(cor, u3x_sam_2, &a,
+                u3x_sam_6, &b,
+                u3x_sam_7, &c, 0);
+
+  if (  (c3n == u3ud(a))
+     || (c3n == u3ud(b)) )
+  {
+    return u3m_bail(c3__exit);
+  }
+
+  return u3qc_new_rep(a, b, c);
+}
+
+u3_noun
+u3kc_new_rep(u3_atom a,
+             u3_atom b,
+             u3_noun c)
+{
+  u3_noun res = u3qc_new_rep(a, b, c);
+  u3z(a); u3z(b); u3z(c);
+  return res;
+}

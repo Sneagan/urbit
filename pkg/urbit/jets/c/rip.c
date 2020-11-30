@@ -80,3 +80,48 @@ u3_noun u3kc_rip(u3_atom a, u3_atom b) {
   u3z(a); u3z(b);
   return res;
 }
+
+u3_noun
+u3qc_new_rip(u3_atom a,
+             u3_atom b,
+             u3_atom c)
+{
+  if ( 1 == b ) {
+    return u3qc_rip(a, c);
+  }
+
+  if ( 0 == a ) {
+    return u3qc_ripn(b, c);
+  }
+
+  u3l_log("rip: stub\r\r");
+  return u3m_bail(c3__fail);
+}
+
+u3_noun
+u3wc_new_rip(u3_noun cor)
+{
+  u3_noun a, b, c;
+  u3x_mean(cor, u3x_sam_2, &a,
+                u3x_sam_6, &b,
+                u3x_sam_7, &c, 0);
+
+  if (  (c3n == u3ud(a))
+     || (c3n == u3ud(b))
+     || (c3n == u3ud(c)) )
+  {
+    return u3m_bail(c3__exit);
+  }
+
+  return u3qc_new_rip(a, b, c);
+}
+
+u3_noun
+u3kc_new_rip(u3_atom a,
+             u3_atom b,
+             u3_atom c)
+{
+  u3_noun pro = u3qc_new_rip(a, b, c);
+  u3z(a); u3z(b); u3z(c);
+  return pro;
+}
