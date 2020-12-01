@@ -928,9 +928,10 @@
   ~/  %sew
   |=  [a=bloq [b=@u c=@u d=@] e=@]
   ^-  @
-  %^  cat  a
+  %+  mix
     (can a b^e c^d ~)
-  (rsh a (add b c) e)
+  =/  f  (add b c)
+  (lsh a f (rsh a f e))
 ::
 ++  swp                                                 ::  naive rev bloq order
   ~/  %swp
