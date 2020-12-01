@@ -914,14 +914,13 @@
 ::
 ++  run                                                 ::  +turn into atom
   ~/  %run
-  |=  [a=bloq b=@u c=@ d=$-(@ @)]
+  |=  [[a=bloq b=@u c=@] d=$-(@ @)]
   ^-  @
-  (rep a b (rut a b c d))
+  (rep a b (turn (rip a b c) d))
 ::
 ++  rut                                                 ::  +turn into list
   ~/  %rut
-  |=  [a=bloq b=@u c=@ d=$-(@ @)]
-  ^-  (list @)
+  |*  [[a=bloq b=@u c=@] d=$-(@ *)]
   (turn (rip a b c) d)
 ::
 ++  sew                                                 ::  stitch into
