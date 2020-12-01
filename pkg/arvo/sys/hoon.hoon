@@ -924,6 +924,14 @@
   ^-  (list @)
   (turn (rip a b c) d)
 ::
+++  sew                                                 ::  stitch into
+  ~/  %sew
+  |=  [a=bloq [b=@u c=@u d=@] e=@]
+  ^-  @
+  %^  cat  a
+    (can a b^e c^d ~)
+  (rsh a (add b c) e)
+::
 ++  swp                                                 ::  naive rev bloq order
   ~/  %swp
   |=  [a=bloq b=@]
